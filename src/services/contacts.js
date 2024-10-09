@@ -1,41 +1,12 @@
 import { contactsModel } from '../db/models/contact.js';
-import { calculatePaginationData } from '../utils/calculatePaginationData.js';
-import { SORT_ORDER } from '../constants/index.js';
 
-export const getAllContacts = async ({
-  page = 1,
-  perPage = 10,
-  sortOrder = SORT_ORDER.ASC,
-  sortBy = '_id',
-  filter = {},
-}) => {
-  const limit = perPage;
-  const skip = (page - 1) * perPage;
-  const contactsQuery = contactsModel.find();
-  if (filter.contactType) {
-    contactsQuery.where('contactType').equals(filter.contactType);
-  }
-  const contactsCount = await contactsModel
-    .find()
-    .merge(contactsQuery)
-    .countDocuments();
-
-  const contacts = await contactsQuery
-    .skip(skip)
-    .limit(limit)
-    .sort({ [sortBy]: sortOrder })
-    .exec();
-
-  const paginationData = calculatePaginationData(contactsCount, page, perPage);
-
-  return {
-    data: contacts,
-    ...paginationData,
-  };
+export const getAllContacts = async () => {
+  const contacts = await contactsModel.find();
+  return contacts;
 };
 
-export const getContactById = async (contactId, userId) => {
-  const contact = await contactsModel.findOne({ _id: contactId, userId });
+export const getContactById = async (contactId) => {
+  const contact = await contactsModel.findById(contactId);
   return contact;
 };
 
@@ -44,14 +15,9 @@ export const createContact = async (payload) => {
   return contact;
 };
 
-export const updateContact = async (
-  contactId,
-  payload,
-  userId,
-  options = {},
-) => {
+export const updateContact = async (contactId, payload, options = {}) => {
   const newResult = await contactsModel.findOneAndUpdate(
-    { _id: contactId, userId },
+    { _id: contactId },
     payload,
     {
       new: true,
@@ -68,10 +34,9 @@ export const updateContact = async (
   };
 };
 
-export const deleteContactById = async (contactId, userId) => {
+export const deleteContactById = async (contactId) => {
   const contact = await contactsModel.findOneAndDelete({
     _id: contactId,
-    userId,
   });
 
   return contact;

@@ -9,7 +9,7 @@ export const initMongoConnection = async () => {
     const url = env(ENV_VARS.MONGODB_URL);
     const db = env(ENV_VARS.MONGODB_DB);
     const conectionLink = `mongodb+srv://${user}:${password}@${url}/${db}?retryWrites=true&w=majority&appName=Cluster0`;
-
+ 
     await mongoose.connect(conectionLink);
 
     console.log('Mongo connection successfully established!');
