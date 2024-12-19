@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const ContactSchema = new mongoose.Schema(
   {
@@ -14,16 +14,16 @@ const ContactSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-       isFavourite: {
-        type: Boolean,
-        required: false,
-        default: false,
+    isFavourite: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
-           contactType: {
-        type: String,
-        required: true,
-        enum: ['work', 'home', 'personal'],
-        default: 'personal',
+    contactType: {
+      type: String,
+      required: true,
+      enum: ["work", "home", "personal"],
+      default: "personal",
     },
   },
   {
@@ -31,4 +31,4 @@ const ContactSchema = new mongoose.Schema(
   },
 );
 
-export const ContactsColection = mongoose.model('contacts', ContactSchema);
+export const ContactsColection = mongoose.model("students", ContactSchema);
