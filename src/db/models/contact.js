@@ -9,26 +9,24 @@ const ContactSchema = new mongoose.Schema(
     phoneNumber: {
       type: String,
       required: true,
+      enum: ["work", "home", "personal"],
+      default: "personal",
     },
     email: {
       type: String,
-      required: true,
+      reqired: true,
     },
     isFavourite: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    contactType: {
       type: String,
-      required: true,
       enum: ["work", "home", "personal"],
+      required: true,
       default: "personal",
     },
   },
   {
     timestamps: true,
+    versionKey: false,
   },
 );
 
-export const ContactsColection = mongoose.model("students", ContactSchema);
+export const ContactsColection = mongoose.model("contacts", ContactSchema);
