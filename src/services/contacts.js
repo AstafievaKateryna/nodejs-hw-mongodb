@@ -1,15 +1,15 @@
-import { ContactsColection } from '../db/models/contact.js';
+import { ContactsCollection } from "../db/models/contact.js";
 
-export const getAllContcats = () => ContactsColection.find();
+export const getAllContcats = () => ContactsCollection.find();
 
 export const getContactById = (contactId) =>
-  ContactsColection.findById(contactId);
+  ContactsCollection.findById(contactId);
 
 export const postContact = (contactData) =>
-  ContactsColection.create(contactData);
+  ContactsCollection.create(contactData);
 
 export const deleteContact = (contactId) =>
-  ContactsColection.findByIdAndDelete(contactId);
+  ContactsCollection.findByIdAndDelete(contactId);
 
 export const patchContact = (contactId, contactData) =>
-  ContactsColection.findByIdAndUpdate(contactId, contactData, { new: true });
+  ContactsCollection.findByIdAndUpdate(contactId, contactData, { new: true });
