@@ -24,7 +24,7 @@ const ContactSchema = new mongoose.Schema(
       type: String,
       enum: ["work", "home", "personal"],
       required: true,
-      default: ["personal"],
+      default: "personal",
     },
   },
   {
