@@ -1,4 +1,4 @@
-import { SORT_ORDER } from '../constants/constants.js';
+import { SORT_ORDER } from "../constants/constants.js";
 
 const parseSortOrder = (sortOrder) => {
   const isOrder = [SORT_ORDER.ASC, SORT_ORDER.DESC].includes(sortOrder);
@@ -7,11 +7,11 @@ const parseSortOrder = (sortOrder) => {
 };
 
 const parseSortBy = (sortBy) => {
-  const keysOfContacts = ['name'];
+  const keysOfContacts = ["name"];
   if (keysOfContacts.includes(sortBy)) {
     return sortBy;
   }
-  return 'name';
+  return "name";
 };
 
 export const parseSortParams = (query) => {
