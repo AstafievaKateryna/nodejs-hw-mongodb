@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 const ContactSchema = new Schema(
   {
@@ -14,15 +14,24 @@ const ContactSchema = new Schema(
       type: String,
       reqired: true,
     },
-    isFavourite: { type: Boolean, default: false },
+    isFavourite: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     contactType: {
       type: String,
-      enum: ['work', 'home', 'personal'],
+      enum: contactsType,
       required: true,
-      default: 'personal',
+      default: ["personal"],
+    },
+    userId: { type: Schema.Types.ObjectId, ref: "users", required: true },
+    photo: {
+      type: String,
+      default: null,
     },
   },
   { timestamps: true, versionKey: false },
 );
 
-export const ContactsColection = model('contacts', ContactSchema);
+export const ContactsColection = model("contacts", ContactSchema);
