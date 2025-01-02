@@ -20,10 +20,6 @@ import { validateBody } from "../middlewares/validateBody.js";
 import { authenticate } from "../middlewares/authenticate.js";
 import { upload } from "../middlewares/upload.js";
 
-// import { checkRoles } from '../middlewares/checkRoles.js';
-// import { ROLES } from '../constants/constants.js';
-// console.log(checkRoles(ROLES.ADMIN, ROLES.USER));
-
 const jsonParser = express.json();
 const router = Router();
 
